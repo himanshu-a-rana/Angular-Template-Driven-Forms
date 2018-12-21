@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-template-driven-forms';
+  languages = ['English', 'Spanish', 'Other'];
 }
