@@ -29,7 +29,7 @@
         class="form-control"
         required
         name="firstName"
-        ngModel
+        [(ngModel)]="model.firstName"
       />
     </div>
     <div class="form-group">
@@ -40,39 +40,66 @@
         class="form-control"
         required
         name="lastName"
-        ngModel
+        [(ngModel)]="model.lastName"
       />
     </div>
 
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="is-full-time" ngModel /> Full Time Employee
+        <input
+          type="checkbox"
+          name="is-full-time"
+          [(ngModel)]="model.isFullTime"
+        />
+        Full Time Employee
       </label>
     </div>
 
     <label class="font-weight-bold">Payment Type</label>
     <div class="radio">
       <label>
-        <input type="radio" name="pay-type" value="w2" checked /> W2
+        <input
+          type="radio"
+          name="paymentType"
+          value="w2"
+          [(ngModel)]="model.paymentType"
+          checked
+        />
+        W2
       </label>
     </div>
     <div class="radio">
-      <label> <input type="radio" name="pay-type" value="1099" /> 1099 </label>
+      <label>
+        <input
+          type="radio"
+          name="paymentType"
+          value="1099"
+          [(ngModel)]="model.paymentType"
+        />
+        1099
+      </label>
     </div>
 
     <div class="form-group">
       <label for="">Primary Language</label>
-      <select name="" id="" class="form-control">
-        <option value="" *ngFor="let lang of languages">{{ lang }}</option>
+      <select
+        name="primaryLanguage"
+        id=""
+        class="form-control"
+        [(ngModel)]="model.primaryLanguage"
+      >
+        <option *ngFor="let lang of languages">{{ lang }}</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="">Date Hired</label>
-      <input type="date" name="" id="" class="form-control">
+      <input type="date" name="" id="" class="form-control" />
     </div>
     <button type="submit" class="btn btn-primary">Ok</button>
   </form>
+  Model: {{ model | json }} <br />
+  Angular: {{ form.value | json }}
 </div>
 
 <!-- {{ form.pristine }} -->
