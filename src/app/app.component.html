@@ -21,9 +21,13 @@
 <div class="container">
   <h3>Employee Forms</h3>
   <form #form="ngForm" novalidate>
-    <div class="form-group">
-      <label for="firstNameId">First Name</label>
+    <div
+      class="form-group"
+      [class.invalid]="firstName.invalid && firstName.touched"
+    >
+      <label for="firstNameId" class="col-form-label">First Name</label>
       <input
+        #firstName="ngModel"
         id="firstNameId"
         type="text"
         class="form-control"
@@ -31,7 +35,15 @@
         name="firstName"
         [(ngModel)]="model.firstName"
       />
+      <div
+        *ngIf="firstName.invalid && firstName.touched"
+        class="alert alert-danger"
+      >
+        First Name is required
+      </div>
     </div>
+    <!-- <h3>Classes</h3>  -->
+    <!-- <h4>{{ firstName.invalid }}</h4> -->
     <div class="form-group">
       <label for="lastNameId">Last Name</label>
       <input
@@ -80,14 +92,17 @@
       </label>
     </div>
 
-    <div class="form-group">
-      <label for="">Primary Language</label>
-      <select
+    <div class="form-group" [class.invalid]="!hasPrimaryLanguageError">
+      <label for="" class="col-form-label">Primary Language</label>
+      <!-- <select class="form-control"> -->
+        <select
         name="primaryLanguage"
-        id=""
+        id="selectPrimaryLanguage"
         class="form-control"
         [(ngModel)]="model.primaryLanguage"
-      >
+        (blur)="validatePrimaryLanguage($event)"
+        >
+        <option value="default">Select a Language...</option>
         <option *ngFor="let lang of languages">{{ lang }}</option>
       </select>
     </div>
